@@ -6,20 +6,18 @@ Copyright (c) 2015 Willie Wheeler.
 
 module Ode.View.Blocks where
 
-import Graphics.Collage (Form, toForm)
-import Graphics.Element (image)
+import Graphics.Collage (Form)
 
-block : String -> Form
-block s = toForm (image 101 171 ("/resources/planet-cute/" ++ s ++ ".png"))
+import Ode.View.ViewUtil (tile)
 
 dirtBlock : Form
-dirtBlock = block "Dirt%20Block"
+dirtBlock = tile "Dirt%20Block"
 
 grassBlock : Form
-grassBlock = block "Grass%20Block"
+grassBlock = tile "Grass%20Block"
 
 stoneBlock : Form
-stoneBlock = block "Stone%20Block"
+stoneBlock = tile "Stone%20Block"
 
 waterBlock : Form
-waterBlock = block "Water%20Block"
+waterBlock = tile "Water%20Block"
