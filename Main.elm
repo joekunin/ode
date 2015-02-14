@@ -12,10 +12,10 @@ import Signal (Signal)
 import Time
 import Window
 
-import Ode.Model.InputModel (UserInput, userInput, Input)
-import Ode.Model.GameModel (Player, GameState, defaultGame)
+import Ode.Model.InputModel (userInput, Input)
+import Ode.Model.GameModel (GameState, defaultGame)
 import Ode.Logic (stepGame)
-import Ode.View.View (view)
+import Ode.View.GameView (view)
 
 {-| Main function, which is the entry point into the game.
 -}

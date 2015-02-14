@@ -1,39 +1,24 @@
-{--
-View.elm
+{-
+MapPane.elm
 
 Copyright (c) 2015 Willie Wheeler.
---}
+-}
 
-module Ode.View.View where
+module Ode.View.MapPane where
 
-import Color (..)
 import Graphics.Collage (..)
 import Graphics.Element (..)
-import List
-import Markdown
-import Text
-import Window
 
-import Ode.Model.GameModel (Player, GameState)
+import Ode.Model.GameModel (GameState)
 import Ode.View.Blocks (..)
 import Ode.View.Characters (..)
 
-{-| Function we expose for displaying the game state.
-    Though we accept the window dimensions here, currently we aren't doing anything with them.
--}
-view : (Int, Int) -> GameState -> Element
-view (w, h) gameState =
-  flow right
-  [ mapDisplay (w, h) gameState
-  , playerPanel (w, h) gameState
-  ]
-
-{-| Render the game map.
+{-| Render the map pane.
 
     See http://docs.racket-lang.org/teachpack/2htdpPlanet_Cute_Images.html for info on composing the tiles.
 -}
-mapDisplay : (Int, Int) -> GameState -> Element
-mapDisplay (w, h) gameState =
+mapPane : (Int, Int) -> GameState -> Element
+mapPane (w, h) gameState =
   -- FIXME Temporarily just hardcoding these bad boys
   collage 800 800
     [ move (-303, 342) grassBlock
@@ -91,14 +76,3 @@ mapDisplay (w, h) gameState =
     , move (gameState.player.x, gameState.player.y) hornGirl
     , move (gameState.player.x + 70, gameState.player.y + 60) (toForm (image 101 171 "/resources/planet-cute/SpeechBubble.png"))
     ]
-
-{-| Render the player panel.
--}
-playerPanel : (Int, Int) -> GameState -> Element
-playerPanel (w, h) gameState =
-  flow down
-  [ Markdown.toElement "# Adventurer"
-  , Markdown.toElement ("Gold: " ++ (toString gameState.player.gold))
-  , Markdown.toElement ("Experience: " ++ (toString gameState.player.experience))
-  , Markdown.toElement ("Hit Points: " ++ (toString gameState.player.hitPoints))
-  ]
