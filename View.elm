@@ -7,7 +7,8 @@ Copyright (c) 2015 Willie Wheeler.
 module View where
 
 import GameModel (Player, GameState, defaultGame)
-import Blocks (..)
+import Tiles.Blocks (..)
+import Tiles.Characters (..)
 
 import Color (..)
 import Graphics.Collage (..)
@@ -48,6 +49,7 @@ mapDisplay =
     , move (101, 301) (toForm (image 101 171 "/resources/planet-cute/Key.png"))
     , move (202, 261) grassBlock
     , move (303, 261) grassBlock
+    , move (303, 302) (toForm (image 101 171 "/resources/planet-cute/Tree%20Tall.png"))
     
     , move (-303, 180) dirtBlock
     , move (-202, 180) dirtBlock
@@ -73,7 +75,15 @@ mapDisplay =
     , move (202, 18) waterBlock
     , move (303, 18) dirtBlock
 
-    , move (player.x, player.y) (toForm (image 101 171 "/resources/planet-cute/Character%20Horn%20Girl.png"))
+    , move (-303, -63) waterBlock
+    , move (-202, -63) waterBlock
+    , move (-101, -63) waterBlock
+    , move (0, -63) waterBlock
+    , move (101, -63) waterBlock
+    , move (202, -63) waterBlock
+    , move (303, -63) dirtBlock
+
+    , move (player.x, player.y) hornGirl
     , move (player.x + 70, player.y + 60) (toForm (image 101 171 "/resources/planet-cute/SpeechBubble.png"))
     ]
 
@@ -88,12 +98,7 @@ playerPanel =
 
 display : (Int, Int) -> GameState -> Element
 display (w, h) gameState =
---  Text.asText gameState
   flow right
-  [
---    Markdown.toElement "Gold:",
---    Markdown.toElement "Experience:",
---    Text.asText gameState,
-    mapDisplay,
-    playerPanel
+  [ mapDisplay
+  , playerPanel
   ]

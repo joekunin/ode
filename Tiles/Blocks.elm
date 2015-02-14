@@ -4,10 +4,10 @@ Blocks.elm
 Copyright (c) 2015 Willie Wheeler.
 --}
 
-module Blocks where
+module Tiles.Blocks where
 
-import Graphics.Collage (..)
-import Graphics.Element (..)
+import Graphics.Collage (Form, toForm)
+import Graphics.Element (image)
 
 block : String -> Form
 block s = toForm (image 101 171 ("/resources/planet-cute/" ++ s ++ ".png"))
