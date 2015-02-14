@@ -4,11 +4,7 @@ View.elm
 Copyright (c) 2015 Willie Wheeler.
 --}
 
-module View where
-
-import GameModel (Player, GameState, defaultGame)
-import Tiles.Blocks (..)
-import Tiles.Characters (..)
+module Ode.View where
 
 import Color (..)
 import Graphics.Collage (..)
@@ -17,6 +13,10 @@ import List
 import Markdown
 import Text
 import Window
+
+import Ode.GameModel (Player, GameState, defaultGame)
+import Ode.Tiles.Blocks (..)
+import Ode.Tiles.Characters (..)
 
 {-- Part 4: Display the game --------------------------------------------------
 

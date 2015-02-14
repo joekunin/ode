@@ -4,10 +4,10 @@ Logic.elm
 Copyright (c) 2015 Willie Wheeler.
 --}
 
-module Logic where
+module Ode.Logic where
 
-import InputModel (Input, userInput)
-import GameModel (GameState)
+import Ode.InputModel (Input, userInput)
+import Ode.GameModel (GameState)
 
 {-- Part 3: Update the game ---------------------------------------------------
 

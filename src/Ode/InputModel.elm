@@ -4,7 +4,7 @@ InputModel.elm
 Copyright (c) 2015 Willie Wheeler.
 --}
 
-module InputModel where
+module Ode.InputModel where
 
 import Keyboard
 import Signal
@@ -25,5 +25,6 @@ userInput : Signal UserInput
 userInput = Signal.constant {}
 
 type alias Input =
-  { timeDelta : Float,
-    userInput : UserInput }
+  { timeDelta : Float
+  , userInput : UserInput
+  }

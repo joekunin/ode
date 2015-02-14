@@ -4,7 +4,7 @@ Characters.elm
 Copyright (c) 2015 Willie Wheeler.
 --}
 
-module Tiles.Characters where
+module Ode.Tiles.Characters where
 
 import Graphics.Collage (Form, toForm)
 import Graphics.Element (image)

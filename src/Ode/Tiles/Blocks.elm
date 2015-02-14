@@ -4,7 +4,7 @@ Blocks.elm
 Copyright (c) 2015 Willie Wheeler.
 --}
 
-module Tiles.Blocks where
+module Ode.Tiles.Blocks where
 
 import Graphics.Collage (Form, toForm)
 import Graphics.Element (image)

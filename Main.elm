@@ -1,19 +1,21 @@
 {--
-Ode.elm
+Main.elm
 
 Copyright (c) 2015 Willie Wheeler.
 --}
 
-import InputModel (UserInput, userInput, Input)
-import GameModel (Player, GameState, defaultGame)
-import Logic (stepGame)
-import View (display)
+module Ode.Main where
 
 import Graphics.Element (..)
 import Signal
 import Signal (Signal)
 import Time
 import Window
+
+import Ode.InputModel (UserInput, userInput, Input)
+import Ode.GameModel (Player, GameState, defaultGame)
+import Ode.Logic (stepGame)
+import Ode.View (display)
 
 delta : Signal Float
 delta = Time.fps 30
