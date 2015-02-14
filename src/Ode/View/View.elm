@@ -4,7 +4,7 @@ View.elm
 Copyright (c) 2015 Willie Wheeler.
 --}
 
-module Ode.View where
+module Ode.View.View where
 
 import Color (..)
 import Graphics.Collage (..)
@@ -15,8 +15,8 @@ import Text
 import Window
 
 import Ode.Model.GameModel (Player, GameState)
-import Ode.Tiles.Blocks (..)
-import Ode.Tiles.Characters (..)
+import Ode.View.Blocks (..)
+import Ode.View.Characters (..)
 
 {-| Function we expose for displaying the game state.
     Though we accept the window dimensions here, currently we aren't doing anything with them.
