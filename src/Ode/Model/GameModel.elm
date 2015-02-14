@@ -24,7 +24,14 @@ be an empty list (no objects at the start):
 
 --data Command = NORTH | SOUTH | EAST | WEST
 
-{-| Player type.
+{-| Type alias representing the overall game state type.
+-}
+type alias GameState =
+  { player : Player
+  , timeDelta : Float
+  }
+
+{-| Type alias representing the player.
 -}
 type alias Player =
   { x : Float
@@ -34,10 +41,10 @@ type alias Player =
   , experience : Int
   }
 
-{-| Overall game state type.
--}
-type alias GameState =
-  { player : Player
+defaultGame : GameState
+defaultGame =
+  { player = player
+  , timeDelta = 0.0
   }
 
 player : Player
@@ -47,9 +54,4 @@ player =
   , gold = 0
   , hitPoints = 15
   , experience = 0
-  }
-
-defaultGame : GameState
-defaultGame =
-  { player = player
   }

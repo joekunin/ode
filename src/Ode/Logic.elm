@@ -21,4 +21,6 @@ Task: Redefine `stepGame` to use the UserInput and GameState
 
 stepGame : Input -> GameState -> GameState
 stepGame { timeDelta, userInput } gameState =
-  gameState
+  { player = gameState.player
+  , timeDelta = timeDelta
+  }

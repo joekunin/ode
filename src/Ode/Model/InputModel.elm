@@ -17,14 +17,27 @@ Task: Redefine `UserInput` to include all of the information you need.
       Redefine `userInput` to be a signal that correctly models the user
       input as described by `UserInput`.
 
+(This seems more like view-related stuff, not model stuff. [WLW])
+
 ------------------------------------------------------------------------------}
 
-type alias UserInput = {}
+{-| Overall input type, including both clock ticks and user input.
 
-userInput : Signal UserInput
-userInput = Signal.constant {}
-
+    timeDelta : number of millis since the last tick.
+    userInput : explicit action by the user (e.g. keypresses, mouse movements)
+-}
 type alias Input =
   { timeDelta : Float
   , userInput : UserInput
   }
+
+{-| User-generated input type.
+-}
+type alias UserInput =
+  {
+  }
+
+{-| Instance for user-generated inputs.
+-}
+userInput : Signal UserInput
+userInput = Signal.constant {}
