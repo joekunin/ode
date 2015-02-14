@@ -4,7 +4,7 @@ InputModel.elm
 Copyright (c) 2015 Willie Wheeler.
 --}
 
-module Ode.InputModel where
+module Ode.Model.InputModel where
 
 import Keyboard
 import Signal

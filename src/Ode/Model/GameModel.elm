@@ -4,7 +4,7 @@ GameModel.elm
 Copyright (c) 2015 Willie Wheeler.
 --}
 
-module Ode.GameModel where
+module Ode.Model.GameModel where
 
 {-- Part 2: Model the game ----------------------------------------------------
 

@@ -6,8 +6,8 @@ Copyright (c) 2015 Willie Wheeler.
 
 module Ode.Logic where
 
-import Ode.InputModel (Input, userInput)
-import Ode.GameModel (GameState)
+import Ode.Model.InputModel (Input, userInput)
+import Ode.Model.GameModel (GameState)
 
 {-- Part 3: Update the game ---------------------------------------------------
 

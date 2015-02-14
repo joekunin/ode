@@ -14,23 +14,27 @@ import Markdown
 import Text
 import Window
 
-import Ode.GameModel (Player, GameState, defaultGame)
+import Ode.Model.GameModel (Player, GameState)
 import Ode.Tiles.Blocks (..)
 import Ode.Tiles.Characters (..)
 
-{-- Part 4: Display the game --------------------------------------------------
+{-| Function we expose for displaying the game state.
+    Though we accept the window dimensions here, currently we aren't doing anything with them.
+-}
+view : (Int, Int) -> GameState -> Element
+view (w, h) gameState =
+  flow right
+  [ mapDisplay (w, h) gameState
+  , playerPanel (w, h) gameState
+  ]
 
-How should the GameState be displayed to the user?
+{-| Render the game map.
 
-Task: Redefine `display` to use the GameState you defined in part 2.
-
-------------------------------------------------------------------------------}
-
-player = defaultGame.player
-
--- FIXME Temporarily just hardcoding these bad boys
-mapDisplay : Element
-mapDisplay =
+    See http://docs.racket-lang.org/teachpack/2htdpPlanet_Cute_Images.html for info on composing the tiles.
+-}
+mapDisplay : (Int, Int) -> GameState -> Element
+mapDisplay (w, h) gameState =
+  -- FIXME Temporarily just hardcoding these bad boys
   collage 800 800
     [ move (-303, 342) grassBlock
     , move (-202, 342) grassBlock
@@ -83,22 +87,18 @@ mapDisplay =
     , move (202, -63) waterBlock
     , move (303, -63) dirtBlock
 
-    , move (player.x, player.y) hornGirl
-    , move (player.x + 70, player.y + 60) (toForm (image 101 171 "/resources/planet-cute/SpeechBubble.png"))
+    -- TODO Render in the correct layer.
+    , move (gameState.player.x, gameState.player.y) hornGirl
+    , move (gameState.player.x + 70, gameState.player.y + 60) (toForm (image 101 171 "/resources/planet-cute/SpeechBubble.png"))
     ]
 
-playerPanel : Element
-playerPanel =
+{-| Render the player panel.
+-}
+playerPanel : (Int, Int) -> GameState -> Element
+playerPanel (w, h) gameState =
   flow down
   [ Markdown.toElement "# Adventurer"
-  , Markdown.toElement ("Gold: " ++ (toString player.gold))
-  , Markdown.toElement ("Experience: " ++ (toString player.experience))
-  , Markdown.toElement ("Hit Points: " ++ (toString player.hitPoints))
-  ]
-
-display : (Int, Int) -> GameState -> Element
-display (w, h) gameState =
-  flow right
-  [ mapDisplay
-  , playerPanel
+  , Markdown.toElement ("Gold: " ++ (toString gameState.player.gold))
+  , Markdown.toElement ("Experience: " ++ (toString gameState.player.experience))
+  , Markdown.toElement ("Hit Points: " ++ (toString gameState.player.hitPoints))
   ]

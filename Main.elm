@@ -12,19 +12,21 @@ import Signal (Signal)
 import Time
 import Window
 
-import Ode.InputModel (UserInput, userInput, Input)
-import Ode.GameModel (Player, GameState, defaultGame)
+import Ode.Model.InputModel (UserInput, userInput, Input)
+import Ode.Model.GameModel (Player, GameState, defaultGame)
 import Ode.Logic (stepGame)
-import Ode.View (display)
+import Ode.View (view)
 
-delta : Signal Float
-delta = Time.fps 30
-
-input : Signal Input
-input = Signal.sampleOn delta (Signal.map2 Input delta userInput)
+{-| Main function, which is the entry point into the game.
+-}
+main : Signal Element
+main = Signal.map2 view Window.dimensions gameState
 
 gameState : Signal GameState
 gameState = Signal.foldp stepGame defaultGame input
 
-main : Signal Element
-main = Signal.map2 display Window.dimensions gameState
+input : Signal Input
+input = Signal.sampleOn delta (Signal.map2 Input delta userInput)
+
+delta : Signal Float
+delta = Time.fps 30
