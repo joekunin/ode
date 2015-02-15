@@ -37,7 +37,7 @@ mapPane (w, h) gameState =
     , move (-101, 261) grassBlock
     , move (0, 261) grassBlock
     , move (101, 261) grassBlock
-    , move (101, 301) (toForm (image 101 171 "/resources/planet-cute/Key.png"))
+    , move (101, 301 + offset2(gameState.time)) (toForm (image 101 171 "/resources/planet-cute/Key.png"))
     , move (202, 261) grassBlock
     , move (303, 261) grassBlock
     , move (303, 302) (toForm (image 101 171 "/resources/planet-cute/Tree%20Tall.png"))
@@ -50,31 +50,40 @@ mapPane (w, h) gameState =
     , move (202, 180) dirtBlock
     , move (303, 180) grassBlock
 
-    , move (-303, 89) waterBlock
-    , move (-202, 99) waterBlock
-    , move (-101, 89) waterBlock
-    , move (0, 99) waterBlock
-    , move (101, 89) waterBlock
+    , move (-303, 99 + offset0(gameState.time)) waterBlock
+    , move (-202, 99 + offset1(gameState.time)) waterBlock
+    , move (-101, 99 + offset0(gameState.time)) waterBlock
+    , move (0, 99 + offset1(gameState.time)) waterBlock
+    , move (101, 99 + offset0(gameState.time)) waterBlock
     , move (202, 99) dirtBlock
     , move (303, 99) dirtBlock
 
-    , move (-303, 8) waterBlock
-    , move (-202, 18) waterBlock
-    , move (-101, 8) waterBlock
-    , move (0, 18) waterBlock
-    , move (101, 8) waterBlock
-    , move (202, 18) waterBlock
+    , move (-303, 18 + offset0(gameState.time)) waterBlock
+    , move (-202, 18 + offset1(gameState.time)) waterBlock
+    , move (-101, 18 + offset0(gameState.time)) waterBlock
+    , move (0, 18 + offset1(gameState.time)) waterBlock
+    , move (101, 18 + offset0(gameState.time)) waterBlock
+    , move (202, 18 + offset1(gameState.time)) waterBlock
     , move (303, 18) dirtBlock
 
-    , move (-303, -73) waterBlock
-    , move (-202, -63) waterBlock
-    , move (-101, -73) waterBlock
-    , move (0, -63) waterBlock
-    , move (101, -73) waterBlock
-    , move (202, -63) waterBlock
+    , move (-303, -63 + offset0(gameState.time)) waterBlock
+    , move (-202, -63 + offset1(gameState.time)) waterBlock
+    , move (-101, -63 + offset0(gameState.time)) waterBlock
+    , move (0, -63 + offset1(gameState.time)) waterBlock
+    , move (101, -63 + offset0(gameState.time)) waterBlock
+    , move (202, -63 + offset1(gameState.time)) waterBlock
     , move (303, -63) dirtBlock
 
     -- TODO Render in the correct layer.
     , move (gameState.player.x, gameState.player.y) hornGirl
     , move (gameState.player.x + 70, gameState.player.y + 60) (toForm (image 101 171 "/resources/planet-cute/SpeechBubble.png"))
     ]
+
+offset0 : Float -> Float
+offset0 x = 10 * sin(x / 20.0)
+
+offset1 : Float -> Float
+offset1 x = 10 * cos(x / 20.0)
+
+offset2 : Float -> Float
+offset2 x = 5 * cos(x / 10.0)

@@ -35,6 +35,8 @@ stepGame (timeDelta, direction, isRunning) gameState =
           |> newVelocity isRunning direction
           |> setDirection direction
           |> updatePosition timeDelta
+      -- FIXME Get the actual time, not computed time
+      , time = gameState.time + timeDelta
       }
 
 -- Helper function

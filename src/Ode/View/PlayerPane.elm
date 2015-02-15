@@ -26,4 +26,5 @@ playerPane (w, h) gameState =
     , Markdown.toElement ("Position: x=" ++ (toString player.x) ++ ", y=" ++ (toString player.y))
     , Markdown.toElement ("Velocity: vx=" ++ (toString player.vx) ++ ", vy=" ++ (toString player.vy))
     , Markdown.toElement ("Direction: " ++ player.dir)
+    , Markdown.toElement ("Time: " ++ (toString gameState.time))
     ]

@@ -32,14 +32,10 @@ gameState = Signal.foldp stepGame initGameState input
 
 {-| Sample user input on each clock tick.
 -}
---input : Signal Input
---input = Signal.sampleOn delta (Signal.map2 Input delta userInput)
 input : Signal (Time, { x:Int, y:Int }, Bool)
 input = Signal.sampleOn delta (Signal.map3 (,,) delta Keyboard.arrows Keyboard.shift)
 
 {-| Generates clock ticks.
 -}
---delta : Signal Float
---delta = Time.fps 30
 delta : Signal Time
 delta = Signal.map (\t -> t / 20) (fps 25)

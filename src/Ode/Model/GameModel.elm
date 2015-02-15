@@ -22,12 +22,15 @@ be an empty list (no objects at the start):
 
 ------------------------------------------------------------------------------}
 
+import Time (..)
+
 --data Command = NORTH | SOUTH | EAST | WEST
 
 {-| Type alias representing the overall game state type.
 -}
 type alias GameState =
   { player : Player
+  , time : Time
   }
 
 {-| Type alias representing the player.
@@ -56,6 +59,7 @@ type alias Player =
 initGameState : GameState
 initGameState =
   { player = initPlayerState
+  , time = 0
   }
 
 {-| Initial player state.
