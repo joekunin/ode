@@ -1,7 +1,7 @@
 Ode
 ===
 
-![Screenshot](https://drive.google.com/file/d/0B5eYKkL5JnWFSnBvdTJxalhHTGM/view?usp=sharing)
+![Screenshot](https://dl.dropboxusercontent.com/u/54053289/ode.png)
 
 Tile-based role-playing game written in Elm. Mostly to allow me to goof around with Elm.
 
