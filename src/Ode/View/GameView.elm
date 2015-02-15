@@ -14,6 +14,9 @@ import Ode.View.MapPane (mapPane)
 import Ode.View.PlayerPane (playerPane)
 
 {-| Function to display game state.
+
+    (w, h) : window dimensions
+    gameState : current game state
 -}
 view : (Int, Int) -> GameState -> Element
 view (w, h) gameState =

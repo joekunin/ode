@@ -28,29 +28,45 @@ be an empty list (no objects at the start):
 -}
 type alias GameState =
   { player : Player
-  , timeDelta : Float
   }
 
 {-| Type alias representing the player.
+    x : position x-coord
+    y : position y-coord
+    vx : x velocity
+    vy : y velocity
+    dir : direction ("north", "south", "east" or "west")
+    gold : gold pieces
+    hitPoints : hit points
+    experience : experience points
 -}
 type alias Player =
   { x : Float
   , y : Float
+  , vx : Float
+  , vy : Float
+  , dir : String
   , gold : Int
   , hitPoints : Int
   , experience : Int
   }
 
-defaultGame : GameState
-defaultGame =
-  { player = player
-  , timeDelta = 0.0
+{-| Initial game state.
+-}
+initGameState : GameState
+initGameState =
+  { player = initPlayerState
   }
 
-player : Player
-player =
+{-| Initial player state.
+-}
+initPlayerState : Player
+initPlayerState =
   { x = -44
   , y = 230
+  , vx = 0
+  , vy = 0
+  , dir = "south"
   , gold = 0
   , hitPoints = 15
   , experience = 0

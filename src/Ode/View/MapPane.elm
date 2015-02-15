@@ -14,8 +14,10 @@ import Ode.View.Blocks (..)
 import Ode.View.Characters (..)
 
 {-| Render the map pane.
-
     See http://docs.racket-lang.org/teachpack/2htdpPlanet_Cute_Images.html for info on composing the tiles.
+
+    (w, h) : window dimensions
+    gameState : current game state
 -}
 mapPane : (Int, Int) -> GameState -> Element
 mapPane (w, h) gameState =

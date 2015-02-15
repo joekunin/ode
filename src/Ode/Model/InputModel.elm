@@ -6,8 +6,8 @@ Copyright (c) 2015 Willie Wheeler.
 
 module Ode.Model.InputModel where
 
-import Keyboard
 import Signal
+import Time (..)
 
 {-- Part 1: Model the user input ----------------------------------------------
 
@@ -19,6 +19,9 @@ Task: Redefine `UserInput` to include all of the information you need.
 
 (This seems more like view-related stuff, not model stuff. [WLW])
 
+FIXME: Currently merging UserInput into Input. Separate once I figure out how
+to do that.
+
 ------------------------------------------------------------------------------}
 
 {-| Overall input type, including both clock ticks and user input.
@@ -27,17 +30,7 @@ Task: Redefine `UserInput` to include all of the information you need.
     userInput : explicit action by the user (e.g. keypresses, mouse movements)
 -}
 type alias Input =
-  { timeDelta : Float
-  , userInput : UserInput
+  { timeDelta : Time
+  , direction : { x : Int, y : Int }
+  , isRunning : Bool
   }
-
-{-| User-generated input type.
--}
-type alias UserInput =
-  {
-  }
-
-{-| Instance for user-generated inputs.
--}
-userInput : Signal UserInput
-userInput = Signal.constant {}
