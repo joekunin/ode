@@ -50,27 +50,27 @@ mapPane (w, h) gameState =
     , move (202, 180) dirtBlock
     , move (303, 180) grassBlock
 
-    , move (-303, 99) waterBlock
+    , move (-303, 89) waterBlock
     , move (-202, 99) waterBlock
-    , move (-101, 99) waterBlock
+    , move (-101, 89) waterBlock
     , move (0, 99) waterBlock
-    , move (101, 99) waterBlock
+    , move (101, 89) waterBlock
     , move (202, 99) dirtBlock
     , move (303, 99) dirtBlock
 
-    , move (-303, 18) waterBlock
+    , move (-303, 8) waterBlock
     , move (-202, 18) waterBlock
-    , move (-101, 18) waterBlock
+    , move (-101, 8) waterBlock
     , move (0, 18) waterBlock
-    , move (101, 18) waterBlock
+    , move (101, 8) waterBlock
     , move (202, 18) waterBlock
     , move (303, 18) dirtBlock
 
-    , move (-303, -63) waterBlock
+    , move (-303, -73) waterBlock
     , move (-202, -63) waterBlock
-    , move (-101, -63) waterBlock
+    , move (-101, -73) waterBlock
     , move (0, -63) waterBlock
-    , move (101, -63) waterBlock
+    , move (101, -73) waterBlock
     , move (202, -63) waterBlock
     , move (303, -63) dirtBlock
 

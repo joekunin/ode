@@ -1,6 +1,8 @@
 Ode
 ===
 
+![Screenshot](https://drive.google.com/file/d/0B5eYKkL5JnWFSnBvdTJxalhHTGM/view?usp=sharing)
+
 Tile-based role-playing game written in Elm. Mostly to allow me to goof around with Elm.
 
 To run it, you'll need to [install Elm](http://elm-lang.org/Install.elm) first. Then
@@ -13,7 +15,7 @@ Finally point your browser at
 
     http://localhost:8000/Main.elm
 
-This "game" doesn't really do much beyond rendering tiles at the moment.
+At the moment, this "game" doesn't do much beyond rendering tiles and letting the player walk around.
 
 Acknowledgments
 ---------------
