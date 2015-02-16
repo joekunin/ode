@@ -11,6 +11,7 @@ import Graphics.Element (..)
 import List
 
 import Ode.Model.GameModel (GameState)
+import Ode.Model.MapModel (..)
 import Ode.View.Blocks (..)
 import Ode.View.Characters (..)
 
@@ -22,48 +23,49 @@ import Ode.View.Characters (..)
 -}
 mapPane : (Int, Int) -> GameState -> Element
 mapPane (w, h) gameState =
+  collage 800 800
+    ( mapTiles gameState ++
+
+      -- TODO Render in the correct layer.
+      [ move (-202, 382) (toForm (image 101 171 "/resources/planet-cute/Tree%20Tall.png"))
+      , move (303, 221) (toForm (image 101 171 "/resources/planet-cute/Tree%20Tall.png"))
+      , move (-202, 301 + yOffset2(gameState.time)) (toForm (image 101 171 "/resources/planet-cute/Key.png"))
+      , move (gameState.player.x, gameState.player.y) hornGirl
+      , move (gameState.player.x + 70, gameState.player.y + 60) (toForm (image 101 171 "/resources/planet-cute/SpeechBubble.png"))
+      ]
+    )
+
+mapTiles : GameState -> List Form
+mapTiles gameState =
   let t = gameState.time
+      gameMap = gameState.map
   in
-    collage 800 800
-      -- FIXME Hardcoded for the moment
-      ( (row t 0 [ Grass, Grass, Grass, Grass, Grass, Grass, Grass ]) ++
-        (row t 1 [ Grass, Grass, Grass, Grass, Grass, Grass, Grass ]) ++
-        (row t 2 [ Dirt,  Dirt,  Dirt,  Dirt,  Dirt,  Dirt,  Grass ]) ++
-        (row t 3 [ Water, Water, Water, Water, Water, Dirt,  Dirt  ]) ++
-        (row t 4 [ Water, Water, Water, Water, Water, Water, Dirt  ]) ++
-        (row t 5 [ Water, Water, Water, Water, Water, Water, Dirt  ]) ++
+    List.concat (List.map (\ (i, row) -> rowTiles t i row) (List.indexedMap (,) gameMap))
 
-        -- TODO Render in the correct layer.
-        [ move (-202, 382) (toForm (image 101 171 "/resources/planet-cute/Tree%20Tall.png"))
-        , move (101, 301 + offset2(gameState.time)) (toForm (image 101 171 "/resources/planet-cute/Key.png"))
-        , move (303, 302) (toForm (image 101 171 "/resources/planet-cute/Tree%20Tall.png"))
-        , move (gameState.player.x, gameState.player.y) hornGirl
-        , move (gameState.player.x + 70, gameState.player.y + 60) (toForm (image 101 171 "/resources/planet-cute/SpeechBubble.png"))
-        ])
+rowTiles : Float -> Int -> List BlockLabel -> List Form
+rowTiles t i labels =
+    List.map (\ (j, label) -> cellTile t (i, j) label) (List.indexedMap (,) labels)
 
-row : Float -> Int -> List BlockLabel -> List Form
-row t i labels =
-    List.map (\ (j, label) -> ijTile t (i, j) label) (List.indexedMap (,) labels)
-
-ijTile : Float -> (Int, Int) -> BlockLabel -> Form
-ijTile t (i, j) label =
+cellTile : Float -> (Int, Int) -> BlockLabel -> Form
+cellTile t (i, j) label =
     let x = toFloat(101 * (j - 3))
         y = toFloat(-81 * i + 342)
-        offset =
-          if | label == Water && i % 2 == 0 -> offset0 t
-             | label == Water && i % 2 == 1 -> offset1 t
+        yOffset =
+          if | label == Water && i % 2 == 0 -> yOffset0 t
+             | label == Water && i % 2 == 1 -> yOffset1 t
+             | label == Wall -> 20
              | otherwise -> 0
     in
-      xyTile (x, y + offset) label
+      xyTile (x, y + yOffset) label
 
 xyTile : (Float, Float) -> BlockLabel -> Form
 xyTile (x, y) label = move (x, y) (block label)
 
-offset0 : Float -> Float
-offset0 t = 5 * sin(t / 30.0)
+yOffset0 : Float -> Float
+yOffset0 t = 5 * sin(t / 30.0)
 
-offset1 : Float -> Float
-offset1 t = 5 * cos(t / 30.0)
+yOffset1 : Float -> Float
+yOffset1 t = 5 * cos(t / 30.0)
 
-offset2 : Float -> Float
-offset2 t = 5 * cos(t / 10.0)
+yOffset2 : Float -> Float
+yOffset2 t = 5 * cos(t / 10.0)

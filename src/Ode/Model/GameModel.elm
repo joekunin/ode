@@ -24,12 +24,12 @@ be an empty list (no objects at the start):
 
 import Time (..)
 
---data Command = NORTH | SOUTH | EAST | WEST
+import Ode.Model.MapModel (..)
 
 {-| Type alias representing the overall game state type.
 -}
 type alias GameState =
-  { map : List (List Int)
+  { map : List (List BlockLabel)
   , player : Player
   , time : Time
   }
@@ -63,17 +63,6 @@ initGameState =
   , player = initPlayerState
   , time = 0
   }
-
-{-| Initial map state.
--}
-initMap =
-  [ [ 1, 1, 1, 1, 1, 1, 1 ]
-  , [ 1, 1, 1, 1, 1, 1, 1 ]
-  , [ 2, 2, 2, 2, 2, 2, 1 ]
-  , [ 0, 0, 0, 0, 0, 2, 2 ]
-  , [ 0, 0, 0, 0, 0, 0, 2 ]
-  , [ 0, 0, 0, 0, 0, 0, 2 ]
-  ]
 
 {-| Initial player state.
 -}
