@@ -28,9 +28,11 @@ areaH = 800
 -}
 stepGame : (Time, { x : Int, y : Int }, Bool) -> GameState -> GameState
 stepGame (timeDelta, direction, isRunning) gameState =
-    let player = gameState.player
+    let map = gameState.map
+        player = gameState.player
     in
-      { player =
+      { map = map
+      , player =
         player
           |> newVelocity isRunning direction
           |> setDirection direction

@@ -29,7 +29,8 @@ import Time (..)
 {-| Type alias representing the overall game state type.
 -}
 type alias GameState =
-  { player : Player
+  { map : List (List Int)
+  , player : Player
   , time : Time
   }
 
@@ -58,9 +59,21 @@ type alias Player =
 -}
 initGameState : GameState
 initGameState =
-  { player = initPlayerState
+  { map = initMap
+  , player = initPlayerState
   , time = 0
   }
+
+{-| Initial map state.
+-}
+initMap =
+  [ [ 1, 1, 1, 1, 1, 1, 1 ]
+  , [ 1, 1, 1, 1, 1, 1, 1 ]
+  , [ 2, 2, 2, 2, 2, 2, 1 ]
+  , [ 0, 0, 0, 0, 0, 2, 2 ]
+  , [ 0, 0, 0, 0, 0, 0, 2 ]
+  , [ 0, 0, 0, 0, 0, 0, 2 ]
+  ]
 
 {-| Initial player state.
 -}

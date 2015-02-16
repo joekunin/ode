@@ -10,6 +10,18 @@ import Graphics.Collage (Form)
 
 import Ode.View.ViewUtil (tile)
 
+type BlockLabel
+  = Dirt
+  | Grass
+  | Water
+
+block : BlockLabel -> Form
+block label =
+  case label of
+    Dirt -> dirtBlock
+    Grass -> grassBlock
+    Water -> waterBlock
+
 dirtBlock : Form
 dirtBlock = tile "Dirt%20Block"
 

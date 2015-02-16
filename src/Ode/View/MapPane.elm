@@ -8,82 +8,62 @@ module Ode.View.MapPane where
 
 import Graphics.Collage (..)
 import Graphics.Element (..)
+import List
 
 import Ode.Model.GameModel (GameState)
 import Ode.View.Blocks (..)
 import Ode.View.Characters (..)
 
 {-| Render the map pane.
-    See http://docs.racket-lang.org/teachpack/2htdpPlanet_Cute_Images.html for info on composing the tiles.
+    See http://docs.racket-lang.org/teachpack/2htdpPlanet_Cute_Images.html for info on composing the xyTiles.
 
     (w, h) : window dimensions
     gameState : current game state
 -}
 mapPane : (Int, Int) -> GameState -> Element
 mapPane (w, h) gameState =
-  -- FIXME Temporarily just hardcoding these bad boys
-  collage 800 800
-    [ move (-303, 342) grassBlock
-    , move (-202, 342) grassBlock
-    , move (-202, 382) (toForm (image 101 171 "/resources/planet-cute/Tree%20Tall.png"))
-    , move (-101, 342) grassBlock
-    , move (0, 342) grassBlock
-    , move (101, 342) grassBlock
-    , move (202, 342) grassBlock
-    , move (303, 342) grassBlock
-    
-    , move (-303, 261) grassBlock
-    , move (-202, 261) grassBlock
-    , move (-101, 261) grassBlock
-    , move (0, 261) grassBlock
-    , move (101, 261) grassBlock
-    , move (101, 301 + offset2(gameState.time)) (toForm (image 101 171 "/resources/planet-cute/Key.png"))
-    , move (202, 261) grassBlock
-    , move (303, 261) grassBlock
-    , move (303, 302) (toForm (image 101 171 "/resources/planet-cute/Tree%20Tall.png"))
-    
-    , move (-303, 180) dirtBlock
-    , move (-202, 180) dirtBlock
-    , move (-101, 180) dirtBlock
-    , move (0, 180) dirtBlock
-    , move (101, 180) dirtBlock
-    , move (202, 180) dirtBlock
-    , move (303, 180) grassBlock
+  let t = gameState.time
+  in
+    collage 800 800
+      -- FIXME Hardcoded for the moment
+      ( (row t 0 [ Grass, Grass, Grass, Grass, Grass, Grass, Grass ]) ++
+        (row t 1 [ Grass, Grass, Grass, Grass, Grass, Grass, Grass ]) ++
+        (row t 2 [ Dirt,  Dirt,  Dirt,  Dirt,  Dirt,  Dirt,  Grass ]) ++
+        (row t 3 [ Water, Water, Water, Water, Water, Dirt,  Dirt  ]) ++
+        (row t 4 [ Water, Water, Water, Water, Water, Water, Dirt  ]) ++
+        (row t 5 [ Water, Water, Water, Water, Water, Water, Dirt  ]) ++
 
-    , move (-303, 99 + offset0(gameState.time)) waterBlock
-    , move (-202, 99 + offset1(gameState.time)) waterBlock
-    , move (-101, 99 + offset0(gameState.time)) waterBlock
-    , move (0, 99 + offset1(gameState.time)) waterBlock
-    , move (101, 99 + offset0(gameState.time)) waterBlock
-    , move (202, 99) dirtBlock
-    , move (303, 99) dirtBlock
+        -- TODO Render in the correct layer.
+        [ move (-202, 382) (toForm (image 101 171 "/resources/planet-cute/Tree%20Tall.png"))
+        , move (101, 301 + offset2(gameState.time)) (toForm (image 101 171 "/resources/planet-cute/Key.png"))
+        , move (303, 302) (toForm (image 101 171 "/resources/planet-cute/Tree%20Tall.png"))
+        , move (gameState.player.x, gameState.player.y) hornGirl
+        , move (gameState.player.x + 70, gameState.player.y + 60) (toForm (image 101 171 "/resources/planet-cute/SpeechBubble.png"))
+        ])
 
-    , move (-303, 18 + offset0(gameState.time)) waterBlock
-    , move (-202, 18 + offset1(gameState.time)) waterBlock
-    , move (-101, 18 + offset0(gameState.time)) waterBlock
-    , move (0, 18 + offset1(gameState.time)) waterBlock
-    , move (101, 18 + offset0(gameState.time)) waterBlock
-    , move (202, 18 + offset1(gameState.time)) waterBlock
-    , move (303, 18) dirtBlock
+row : Float -> Int -> List BlockLabel -> List Form
+row t i labels =
+    List.map (\ (j, label) -> ijTile t (i, j) label) (List.indexedMap (,) labels)
 
-    , move (-303, -63 + offset0(gameState.time)) waterBlock
-    , move (-202, -63 + offset1(gameState.time)) waterBlock
-    , move (-101, -63 + offset0(gameState.time)) waterBlock
-    , move (0, -63 + offset1(gameState.time)) waterBlock
-    , move (101, -63 + offset0(gameState.time)) waterBlock
-    , move (202, -63 + offset1(gameState.time)) waterBlock
-    , move (303, -63) dirtBlock
+ijTile : Float -> (Int, Int) -> BlockLabel -> Form
+ijTile t (i, j) label =
+    let x = toFloat(101 * (j - 3))
+        y = toFloat(-81 * i + 342)
+        offset =
+          if | label == Water && i % 2 == 0 -> offset0 t
+             | label == Water && i % 2 == 1 -> offset1 t
+             | otherwise -> 0
+    in
+      xyTile (x, y + offset) label
 
-    -- TODO Render in the correct layer.
-    , move (gameState.player.x, gameState.player.y) hornGirl
-    , move (gameState.player.x + 70, gameState.player.y + 60) (toForm (image 101 171 "/resources/planet-cute/SpeechBubble.png"))
-    ]
+xyTile : (Float, Float) -> BlockLabel -> Form
+xyTile (x, y) label = move (x, y) (block label)
 
 offset0 : Float -> Float
-offset0 x = 10 * sin(x / 20.0)
+offset0 t = 5 * sin(t / 30.0)
 
 offset1 : Float -> Float
-offset1 x = 10 * cos(x / 20.0)
+offset1 t = 5 * cos(t / 30.0)
 
 offset2 : Float -> Float
-offset2 x = 5 * cos(x / 10.0)
+offset2 t = 5 * cos(t / 10.0)
