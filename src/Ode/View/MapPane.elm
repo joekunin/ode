@@ -6,14 +6,14 @@ Copyright (c) 2015 Willie Wheeler.
 
 module Ode.View.MapPane where
 
-import Graphics.Collage (..)
-import Graphics.Element (..)
+import Graphics.Collage exposing (..)
+import Graphics.Element exposing (..)
 import List
 
-import Ode.Model.GameModel (GameState)
-import Ode.Model.MapModel (..)
-import Ode.View.Blocks (..)
-import Ode.View.Characters (..)
+import Ode.Model.GameModel exposing (GameState)
+import Ode.Model.MapModel exposing (..)
+import Ode.View.Blocks exposing (..)
+import Ode.View.Characters exposing (..)
 
 {-| Render the map pane.
     See http://docs.racket-lang.org/teachpack/2htdpPlanet_Cute_Images.html for info on composing the xyTiles.
@@ -51,10 +51,14 @@ cellTile t (i, j) label =
     let x = toFloat(101 * (j - 3))
         y = toFloat(-81 * i + 342)
         yOffset =
-          if | label == Water && i % 2 == 0 -> yOffset0 t
-             | label == Water && i % 2 == 1 -> yOffset1 t
-             | label == Wall -> 20
-             | otherwise -> 0
+          if label == Water && i % 2 == 0 then
+            yOffset0 t
+          else if label == Water && i % 2 == 1 then
+            yOffset1 t
+          else if label == Wall then
+            20
+          else
+            0
     in
       xyTile (x, y + yOffset) label
 

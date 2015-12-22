@@ -1,12 +1,18 @@
 {
     "version": "1.0.0",
     "summary": "Tile-based RPG.",
-    "repository": "https://github.com/USER/PROJECT.git",
+    "repository": "https://github.com/williewheeler/odeb.git",
     "license": "MIT",
-    "source-directories": [ "src" ],
-    "exposed-modules": [],
+    "source-directories": [
+        "src"
+    ],
+    "exposed-modules": [
+        "Ode",
+        "Ode.Main"
+    ],
     "dependencies": {
-        "elm-lang/core": "1.1.0 <= v < 2.0.0",
-        "evancz/elm-markdown": "1.0.0 <= v < 2.0.0"
-    }
+        "elm-lang/core": "3.0.0 <= v < 4.0.0",
+        "evancz/elm-markdown": "2.0.0 <= v < 3.0.0"
+    },
+    "elm-version": "0.16.0 <= v < 0.17.0"
 }

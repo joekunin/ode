@@ -6,11 +6,11 @@ Copyright (c) 2015 Willie Wheeler.
 
 module Ode.View.PlayerPane where
 
-import Graphics.Collage (..)
-import Graphics.Element (..)
+import Graphics.Collage exposing (..)
+import Graphics.Element exposing (..)
 import Markdown
 
-import Ode.Model.GameModel (GameState)
+import Ode.Model.GameModel exposing (GameState)
 
 {-| Render the player pane.
 -}

@@ -2,16 +2,15 @@
 GameView.elm
 
 Copyright (c) 2015 Willie Wheeler.
---}
+-}
 
 module Ode.View.GameView where
 
-import Graphics.Collage (..)
-import Graphics.Element (..)
+import Graphics.Element exposing (..)
 
-import Ode.Model.GameModel (GameState)
-import Ode.View.MapPane (mapPane)
-import Ode.View.PlayerPane (playerPane)
+import Ode.Model.GameModel exposing (GameState)
+import Ode.View.MapPane exposing (mapPane)
+import Ode.View.PlayerPane exposing (playerPane)
 
 {-| Function to display game state.
 

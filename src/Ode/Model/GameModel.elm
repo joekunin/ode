@@ -1,12 +1,14 @@
-{--
+{-
+-
 GameModel.elm
 
 Copyright (c) 2015 Willie Wheeler.
---}
+-}
 
 module Ode.Model.GameModel where
 
-{-- Part 2: Model the game ----------------------------------------------------
+{-
+- Part 2: Model the game ----------------------------------------------------
 
 What information do you need to represent the entire game?
 
@@ -22,9 +24,9 @@ be an empty list (no objects at the start):
 
 ------------------------------------------------------------------------------}
 
-import Time (..)
+import Time exposing (..)
 
-import Ode.Model.MapModel (..)
+import Ode.Model.MapModel exposing  (..)
 
 {-| Type alias representing the overall game state type.
 -}

@@ -1,8 +1,8 @@
-{--
+{-
 MapModel.elm
 
 Copyright (c) 2015 Willie Wheeler.
---}
+-}
 
 module Ode.Model.MapModel where
 
@@ -10,6 +10,7 @@ type BlockLabel = Brown | Dirt | Grass | RampSouth | Stone | Wall | WallTall | W
 
 {-| Initial map state.
 -}
+initMap : List (List BlockLabel)
 initMap =
   [ [ Grass, Grass, Grass, Stone, WallTall, Wood, Wood ]
   , [ Grass, Grass, Grass, Stone, WallTall, WallTall, WallTall ]

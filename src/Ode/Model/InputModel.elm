@@ -1,15 +1,16 @@
-{--
+{-
 InputModel.elm
 
 Copyright (c) 2015 Willie Wheeler.
---}
+-}
 
 module Ode.Model.InputModel where
 
-import Signal
-import Time (..)
 
-{-- Part 1: Model the user input ----------------------------------------------
+import Time exposing (..)
+
+{-
+- Part 1: Model the user input ----------------------------------------------
 
 What information do you need to represent all relevant user input?
 

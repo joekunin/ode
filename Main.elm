@@ -1,22 +1,27 @@
-{--
+{-
 Main.elm
 
 Copyright (c) 2015 Willie Wheeler.
---}
+-}
 
 module Ode.Main where
 
-import Graphics.Element (..)
+{-| Attempting a tile based game
+
+# Definition
+@docs  main, gameState, input, delta
+-}
+
+import Graphics.Element exposing (..)
 import Keyboard
 import Signal
-import Signal (Signal)
-import Time (..)
+import Signal exposing (Signal)
+import Time exposing (..)
 import Window
 
-import Ode.Model.InputModel (Input)
-import Ode.Model.GameModel (GameState, initGameState)
-import Ode.Logic (stepGame)
-import Ode.View.GameView (view)
+import Ode.Model.GameModel exposing (GameState, initGameState)
+import Ode.Logic exposing (stepGame)
+import Ode.View.GameView exposing (view)
 
 {-| Main function, which is the entry point into the game.
     Listens for changes to the window or game state and applies the view to them.

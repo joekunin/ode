@@ -1,15 +1,15 @@
-{--
+{-
 Blocks.elm
 
 Copyright (c) 2015 Willie Wheeler.
---}
+-}
 
 module Ode.View.Blocks where
 
-import Graphics.Collage (Form)
+import Graphics.Collage exposing (Form)
 
-import Ode.Model.MapModel (..)
-import Ode.View.ViewUtil (tile)
+import Ode.Model.MapModel exposing (..)
+import Ode.View.ViewUtil exposing (tile)
 
 block : BlockLabel -> Form
 block label =
